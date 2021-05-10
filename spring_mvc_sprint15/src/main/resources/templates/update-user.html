@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Update User</title>
+    <link rel="stylesheet" th:href="@{/css/main.css}"/>
+</head>
+<body>
+<div th:replace="home.html"></div>
+<h1> Update Existing User</h1>
+<form th:method="post" th:action="@{update}" th:object="${user}">
+    <table class="noLine">
+        <tr>
+            <td>ID:</td>
+            <td><input type="text" th:field="*{id}" disabled/></td>
+        </tr>
+        <tr>
+            <td>First name:</td>
+            <td><input type="text" th:field="*{firstName}" required/></td>
+        </tr>
+        <tr>
+            <td>Last name:</td>
+            <td><input type="text" th:field="*{lastName}" required/></td>
+        </tr>
+        <tr>
+            <td>Email:</td>
+            <td><input type="text" th:field="*{email}" required/></td>
+        </tr>
+        <tr>
+            <td>Old Password:</td>
+            <td><input th:type="password" th:value="${user.password}" name="oldPassword" required/></td>
+        </tr>
+        <tr>
+            <td>New Password:</td>
+            <td><input th:type="password" th:field="*{password}" name="newPassword"/></td>
+        </tr>
+        <tr>
+            <td>Role:</td>
+            <td>
+                <select name="role" th:field="*{role}">
+                    <option th:each="role : ${roles}"
+                            th:value="${role.getId()}"
+                            th:text="${role.getName()}"
+                            th:selected="${role.getId() == user.role.getId()}"/>
+                </select>
+            </td>
+        </tr>
+    </table>
+    <button type="submit">Update</button>
+    <button type="reset">Clear</button>
+</form>
+</body>
+</html>

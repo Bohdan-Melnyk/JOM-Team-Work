@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <div th:replace="home.html"></div>
+    <title>Create New ToDo List</title>
+</head>
+<body>
+<div th:replace="home.html"></div>
+<h1> Create New Todo</h1>
+<form th:method="post" th:action="@{create}" th:object="${todo}">
+    <table class="noLine">
+        <tr>
+            <td>Title:</td>
+            <td><input type="text" th:field="*{title}" required/></td>
+        </tr>
+        <tr>
+            <td>Created at:</td>
+            <td><input type="text" th:field="*{createdAt}" required/></td>
+        </tr>
+        <tr>
+            <td>Owner:</td>
+            <td><input type="text" th:field="*{owner}" required/></td>
+        </tr>
+        <tr>
+            <td>Tasks:</td>
+            <td><input type="text" th:field="*{tasks}" required/></td>
+        </tr>
+
+    </table>
+    <button type="submit">Register</button>
+    <button type="reset">Clear</button>
+</form>
+</body>
+</html>

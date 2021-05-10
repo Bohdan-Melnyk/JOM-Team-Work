@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Update existing To-Do</title>
+    <link rel="stylesheet" th:href="@{/css/main.css}"/>
+</head>
+<body>
+<div th:replace="home.html"></div>
+<h1> Update Existing User</h1>
+<form th:method="post" th:action="@{update}" th:object="${toDo}">
+    <table class="noLine">
+        <tr>
+            <td>ID:</td>
+            <td><input type="text" th:field="*{id}" disabled/></td>
+        </tr>
+        <tr>
+            <td>Title:</td>
+            <td><input type="text" th:field="*{title}" required/></td>
+        </tr>
+        <tr>
+            <td>Created at:</td>
+            <td><input type="text" th:field="*{createdAt}" required/></td>
+        </tr>
+        <tr>
+            <td>Owner:</td>
+            <td><input type="text" th:field="*{owner}" required/></td>
+        </tr>
+        <tr>
+            <td>Tasks:</td>
+            <td><input type="text" th:field="*{tasks}" required/></td>
+        </tr>
+    </table>
+    <button type="submit">Update</button>
+    <button type="reset">Clear</button>
+</form>
+</body>
+</html>

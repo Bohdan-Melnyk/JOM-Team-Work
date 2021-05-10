@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>List of Users</title>
+</head>
+<body>
+
+<div th:replace="home.html"></div>
+<h1> List of Todos</h1>
+
+<table class="tableAll">
+    <tr>
+        <td th:colspan="5" align="right" style="border:0;">
+            <form th:method="get" th:action="@{create}">
+                <button type="submit" >Create new Todo</button>
+            </form>
+        </td>
+    </tr>
+    <tr>
+        <th>No.</th>
+        <th>Id</th>
+        <th>Title</th>
+        <th>Creared at</th>
+        <th>Owner</th>
+        <th>Operations</th>
+    </tr>
+    <tr th:each="todo, iter: ${todos}">
+        <td th:text="${iter.index+1}"/>
+        <td th:text="${todo.id}"/>
+        <td>
+            /tasks/create/todos/7
+            <a th:href="@{/tasks/create/todos/{todo_id}(todo_id=${todo.id})}"
+               th:text="${todo.title}"/>
+        </td>
+        <td th:text="${#temporals.format(todo.createdAt, 'dd.MM.yyyy HH:mm')}"/>
+        <td th:text="${todo.getOwner().getFirstName() + ' ' + todo.getOwner().getLastName()}"/>
+        <td>
+            <a th:href="@{{id}/read(id=${todo.id})}"> Read </a>
+            <a th:href="@{{todo_id}/update/users/{owner_id}(id=${todo.id})}"> Edit </a>
+            <a th:href="@{{todo_id}/delete/users/{owner_id}(id=${todo.id})}"> Remove </a>
+        </td>
+    </tr>
+</table>
+</body>
+</html>
